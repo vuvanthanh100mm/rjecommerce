@@ -1,15 +1,27 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage/HomePage';
-import OrderPage from './pages/OrderPage/OrderPage';
+import { routes } from './routes';
+import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 
 const App = () => {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/order" element={<OrderPage />} />
+          {
+            routes.map((r) => {
+              //const Layout = r.isShowHeader ? DefaultComponent : null
+              const Layout = r.isShowHeader ? DefaultComponent : React.Fragment;
+              return (
+                <Route path={r.path} element=
+                  {
+                    <Layout>
+                      <r.page />
+                    </Layout>
+                  } />
+              )
+            })
+          }
         </Routes>
       </Router>
     </div>

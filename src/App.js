@@ -1,36 +1,19 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './redux/slides/counterSlide'
-import styled from 'styled-components'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import OrderPage from './pages/OrderPage/OrderPage';
 
-function App() {
-  const count = useSelector((state) => state.counter.value)
-  const dispatch = useDispatch()
-
-  const Button = styled.button({
-    color: 'grey',
-    background: 'red'
-  });
-
+const App = () => {
   return (
     <div>
-      <div>
-        <Button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </Button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/order" element={<OrderPage />} />
+        </Routes>
+      </Router>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -10,7 +10,6 @@ const App = () => {
         <Routes>
           {
             routes.map((r) => {
-              //const Layout = r.isShowHeader ? DefaultComponent : null
               const Layout = r.isShowHeader ? DefaultComponent : React.Fragment;
               return (
                 <Route path={r.path} element=
